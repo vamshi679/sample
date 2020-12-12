@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="text-muted">
+        <div>
+            <span class="display-4">Marks section</span>
+        </div><hr>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2 mt-1">
+                <!-- <button type="submit" class="btn btn-primary btn-sm text-white rounded-pill shadow" (click)="downloadFile()">Download
+                Excel</button> -->
+            </div>
+            <div class="col-md-2 mt-1"><button type="button"
+                    class="btn btn-success btn-sm btn-block text-white rounded-pill shadow" (click)="downloadPDF()">Download
+                    pdf</button>
+            </div>
+            <div class="col-md-3 mt-1">
+                <form #file1='ngForm' (ngSubmit)='uploadExcel1(file1.value)'>
+                    <input type="file" name='uploadfile1' class="form-control" (change)='fileUpload($event)' ngModel>
+                    <div class="text-center mt-1">
+                        <button type="submit"
+                            class="btn btn-warning btn-sm text-white rounded-pill shadow">upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>&nbsp;
+
+        <div class="table-responsive">
+            <table class="table table-sm table-borderless text-center">
+                <thead class='thead-light'>
+                    <th>Batch no</th>
+                    <th>Student name</th>
+                    <th>Date</th>
+                    <th>Aptitude</th>
+                    <th>Communication</th>
+                    <th>Technical</th>
+                </thead><br>
+                <tr *ngFor="let k of marksArray | paginate: { id: 'listing_pagination',
+            itemsPerPage: 5,
+            currentPage: page,
+            totalItems: totalRecords }">
+                    <td>{{k.batchno}}</td>
+                    <td>{{k.studentname}}</td>
+                    <td>{{k.date}}</td>
+                    <td>{{k.aptitude}}</td>
+                    <td>{{k.communication}}</td>
+                    <td>{{k.technical}}</td>
+                    <!-- <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodel5"
+                        (click)='update1(l)'><i class="fa fa-pencil" aria-hidden="true"> </i></button>
+                </td> -->
+                </tr>
+            </table>
+            <div class="text-center">
+                <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true"
+                    (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+
+    </div>
+
+</div>

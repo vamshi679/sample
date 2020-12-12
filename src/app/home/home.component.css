@@ -1,0 +1,18 @@
+#bg{
+    /* background-image: url(src/assets/images/Winter-Neva.png); */
+    background-image: url(src/assets/images/typewriter-801921_1920.jpg);
+    height: 100%;
+    width: 100%;
+    background-attachment: fixed;
+}
+
+h2,p{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: lighter;    
+}
+
+a{
+    color: black;
+}
+
+

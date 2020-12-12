@@ -1,0 +1,26 @@
+ /* Links on mouse-over */
+   .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  /* #bg{
+    background-image: url(src/assets/images/Petrol.jpg);
+    height: 92vh;
+    width: 100%;
+    background-attachment:fixed;
+}
+
+@media screen and (max-width: 600px) {
+  #bg{
+    height: 100%;
+    width: 100%;
+  }
+} */
+
+
+a{
+  color: black;
+}
+ 
+  

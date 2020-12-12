@@ -1,0 +1,100 @@
+<div class="container-fluid text-muted">
+
+  <div>
+    <span class="display-4">Batches Available</span>
+  </div><hr>
+
+  <div class="text-right">
+    <button type="button" class="btn btn-primary btn-sm shadow rounded-pill" data-toggle="modal" data-target="#m4">add
+      batch</button>
+  </div>&nbsp;
+
+
+
+  <div class="jumbotron shadow p-3 mb-5 bg-white rounded">
+    <div class="text-center">
+
+      <div class="table-responsive align-content-center">
+        <table class="table table-borderless table-sm">
+          <thead class='bg-light'>
+            <th>Batch no</th>
+            <th>Duration</th>
+            <th>Timings</th>
+            <th>session</th>
+            <th>Add students</th>
+            <th>Remove Batch</th>
+          </thead><br>
+          <!-- <tr *ngFor='let j of batchdetails'> -->
+          <tr *ngFor="let j of batchdetails | paginate: { id: 'listing_pagination',
+          itemsPerPage: 5,
+          currentPage: page,
+          totalItems: totalRecords }">
+            <td>{{j.batchno}}</td>
+            <td>{{j.bduration}}</td>
+            <td>{{j.btimings}}</td>
+            <td>{{j.session}}</td>
+            <td><button class="btn btn-sm btn-primary btn-block rounded-pill" (click)='toRegister(j.batchno)'>add</button></td>
+            <td><button class="btn btn-danger btn-sm btn-block rounded-pill" (click)='todelete(j.batchno)'>remove</button></td>
+          </tr>
+        </table>
+        <div>
+          <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+<!-- Button to Open the Modal -->
+
+
+<!-- The Modal -->
+<div class="modal fade" id="m4">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">add batch details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form #b='ngForm' (ngSubmit)='sendBatch(b.value)'>
+          <div class="form-group">
+            <label for="lbl">enter batch number :</label>
+            <input type="text" id="lbl" class="form-control w-50 rounded-pill" name="batchno" ngModel>
+          </div>
+          <div class="from-group">
+            <label for="lbl1">batch duration :</label>
+            <input type="text" id="lbl1" class="form-control rounded-pill" name="bduration" ngModel>
+          </div>
+          <div class="from-group">
+            <label for="lbl2">batch timings :</label>
+            <input type="time" id="lbl2" class="form-control rounded-pill" name="btimings" ngModel>
+          </div><br>
+          <div class="from-group">
+            <label for="lbl3">session</label>
+            <input type="text" id="lbl3" class="form-control rounded-pill" name="session" ngModel>
+          </div><br>
+          <div class="text-right">
+            <button class="btn btn-warning rounded-pill btn-block btn-sm" type="submit">add</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
+  </div>
+</div>

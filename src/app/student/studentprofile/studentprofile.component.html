@@ -1,0 +1,121 @@
+<div>
+    <!-- <ngx-spinner bdColor="rgba(51,51,51,0.5)" size="medium" color="#fff" type="ball-scale-multiple">
+        <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner> -->
+    <div>
+        <span class="display-4 text-muted">Student Profile</span>
+    </div><hr>
+    <div *ngIf="display">
+
+        <div class="text-right p-2">
+            <h1 class="text-info">Welcome <i class="text-warning">{{sdetails[0].firstname}}</i></h1>
+        </div>
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <img src="../../../assets/img_avatar1.png" class="mx-auto" alt="John" style="width:75%">
+                    <button class="btn btn-sm btn-block btn-outline-dark rounded-pill m-1"
+                        (click)="updatepic(sdetails[0].email)">change profile picture</button>
+                    <button class="btn btn-sm btn-block btn-outline-dark m-1 rounded-pill" data-toggle="modal"
+                        data-target="#myModal9">change password</button>
+                </div>
+            </div>
+
+
+            <div class="col-md-5">
+                <div class="card shadow p-3 mb-4 bg-white rounded">
+                    <div class="card-body">
+                        <h3 class="text-center p-2 ">student profile</h3>
+                        <table class="table table-borderless table-sm text-black-50">
+                            <tr>
+                                <td>StudentID:</td>
+                                <td>{{sdetails[0].imsid}}</td>
+                            </tr>
+                            <tr>
+                                <td>Batch:</td>
+                                <td>{{sdetails[0].batch}}</td>
+                            </tr>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{{sdetails[0].firstname+sdetails[0].Lastname}}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                <td>{{sdetails[0].Gender}}</td>
+                            </tr>
+                            <tr>
+                                <td>EmailId:</td>
+                                <td>{{sdetails[0].email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone:</td>
+                                <td>{{sdetails[0].phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>DOB:</td>
+                                <td>{{sdetails[0].DOB}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td>{{sdetails[0].address}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="shadow p-3 mb-4 bg-white rounded text-center">
+                    <h3>Courses Enrolled</h3>
+                    <div class="text-black-50">
+                        <p>Angular : <i>{{this.value1}}</i></p>
+                        <p>Nodejs : <i>{{this.value2}}</i></p>
+                        <p>Python : <i>{{this.value3}}</i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade text-black text-monospace" id="myModal9">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h4 class="modal-title text-center">Password Update Form</h4>
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <form #ref12='ngForm' (ngSubmit)='updatepwd(ref12.value)'>
+                    <div class="form-group m-4">
+                        <input type="text" name="email" placeholder="abc@gmail.com"
+                            class="form-control rounded-pill text-muted" ngModel>
+                    </div>
+                    <div class="form-group m-4">
+                        <input type="password" name="pwd0" placeholder="new password" class="form-control rounded-pill"
+                            ngModel [type]="hide ? 'text ' : 'password' ">
+
+                    </div>
+                    <div class="form-group m-4">
+                        <input type="password" name="pwd" placeholder="Confirm password"
+                            class="form-control rounded-pill" ngModel [type]="hide ? 'text ' : 'password' ">
+                        <div class='p-1 ml-1 mt-2'>
+                            <i class="fa" [ngClass]="{'fa-eye-slash' : !hide, 'fa-eye' : hide}" id='y'
+                                (click)="showhide()"><span class="text-muted">show password</span></i>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" [disabled]='ref12.invalid'
+                            class="btn rounded-pill btn-sm btn-success btn-block text-white"
+                            (click)='updatepwd(ref12.value)' data-dismiss="modal">change password</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

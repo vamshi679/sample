@@ -1,0 +1,21 @@
+<div class="container-fluid" id="bg" style="margin-top: 60px;">
+
+  <div class="row">
+    <div class="col-md-2 col-xs-6 mt-3">
+      <div class="sidebar">
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" routerLink='adminprofile'> Adminprofile</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink='batchs'> Batchs</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink='attendence'> Attendence</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink='marks'> Marks</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink='fee'> Fee</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-10 col-xs-6 pb-2 mt-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,96 @@
+<div class="container-fluid">
+
+    <div>
+        <span class="display-4 text-muted">Details Section</span>
+    </div><hr>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card shadow p-3 mb-4 bg-white rounded">
+                <h2 class="text-center text-warning font-weight-light">Attendence sheet</h2>
+                <div>
+                    <table class="table table-bordered table-sm rounded">
+                        <thead>
+                            <th>batchno</th>
+                            <th>name</th>
+                            <th>date</th>
+                            <th>status</th>
+                        </thead>
+                        <tr *ngFor='let f of attd'>
+                            <td>{{f.batchno}}</td>
+                            <td>{{f.name}}</td>
+                            <td>{{f.date}}</td>
+                            <td>{{f.status}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn-sm rounded-pill text-white shadow" (click)='downloadPDF()'>download
+                        pdf</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow p-3 mb-4 bg-white rounded">
+                <h2 class="text-center text-warning font-weight-light">Marks sheet</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm rounded">
+                        <thead>
+                            <th>batchno</th>
+                            <th>name</th>
+                            <th>date</th>
+                            <th>aptitude</th>
+                            <th>communication</th>
+                            <th>technical</th>
+                        </thead>
+                        <tr *ngFor='let p of mrks'>
+                            <td>{{p.batchno}}</td>
+                            <td>{{p.studentname}}</td>
+                            <td>{{p.date}}</td>
+                            <td>{{p.aptitude}}</td>
+                            <td>{{p.communication}}</td>
+                            <td>{{p.technical}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn-sm rounded-pill text-white shadow" (click)='downloadPDF1()'>download
+                        pdf</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card shadow p-3 mb-4 bg-white rounded">
+                <h2 class="text-center text-warning font-weight-light">Fee Status & Transactions</h2>
+                <div class="text-muted p-1 m-1">
+                    <span>Total payments : <b class="pl-1">{{this.listlength}}</b></span>
+                </div>
+                <div class="text-muted p-1 m-1">
+                    <span>Payment status :<b class="pl-1">{{this.paymentStatus}}</b></span>
+                </div>
+                <div class="table-responsive mt-4">
+                    <table class="table table-hover table-borderless text-center">
+                        <thead class="bg-light">
+                            <th>StudentID</th>
+                            <th>date of payment</th>
+                            <th>totalfee</th>
+                            <th>payment</th>
+                            <th>due amount</th>
+                        </thead><br>
+                        <tr *ngFor='let j of feeDetails'>
+                            <td>{{j.imsid}}</td>
+                            <td>{{j.dop}}</td>
+                            <td>{{j.totalfee | currency:'INR'}}</td>
+                            <td>{{j.payment | currency:'INR'}}</td>
+                            <td class="text-danger">{{j.balance | currency:'INR'}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

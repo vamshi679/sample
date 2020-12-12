@@ -1,0 +1,342 @@
+<div>
+    <div>
+        <span class="display-4 text-muted">Registration section</span>
+    </div><hr>
+    <div class="row">
+        <div class="col-sm-3">
+            <h2 class="font-weight-light">Batch: <b class="text-warning">{{""+bdisp}}</b></h2>
+        </div>
+        <div class="col-sm-3 mt-1"></div>
+        <div class="col-sm-3 mt-1">
+            <input type="text" class="form-control" [(ngModel)]='searchterm' placeholder="search here">
+        </div>
+        <div class="col-sm-3 mt-1 text-right"><button type="button"
+                class="btn btn-primary btn-sm text-white rounded-pill shadow ml-1" data-toggle="modal"
+                data-target="#myModal3">add new student</button>
+        </div>
+    </div>&nbsp;
+
+
+    <div class="table-responsive">
+        <table class="table table-sm table-borderless bg-light shadow p-3 mb-5 bg-white rounded">
+            <thead class="bg-light">
+                <th>Batch</th>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>phone</th>
+                <th>Gender</th>
+                <th>DOB</th>
+                <th>Qualification</th>
+                <th>Address</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead><br>
+            <tr *ngFor='let i of stdarray | search:searchterm'>
+                <td>{{i.batch}}</td>
+                <td>{{i.imsid}}</td>
+                <td>{{i.firstname+i.Lastname}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.phone}}</td>
+                <td>{{i.Gender}}</td>
+                <td>{{i.DOB}}</td>
+                <td>{{i.Qualification}}</td>
+                <td>{{i.address}}</td>
+                <td><button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" data-toggle="modal"
+                        data-target="#myModal1" (click)='update(i)'>Edit</button></td>
+                <td><button class="btn btn-outline-danger rounded-pill btn-sm"
+                        (click)='removeData(i.email)'>Delete</button></td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- update model -->
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal1">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title text-black-50 text-monospace">Update Student Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <form #ref2='ngForm' (ngSubmit)='editData(ref2.value);ref2.reset()'>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="lbl">Batch :</label>
+                            <input type="number" class="form-control" id="lbl" placeholder="" name="batch"
+                                [ngModel]=updatedata.batch>
+                        </div>
+                        <div class="col">
+                            <label for="lbl1">userID</label>
+                            <input type="text" class="form-control" id="lbl1" placeholder="" name="imsid"
+                                [attr.disabled]='true' [ngModel]=updatedata.imsid>
+                        </div>
+                    </div>
+                    <div class="form-row mt-2">
+                        <div class="col">
+                            <label for="fn">Firstname :</label>
+                            <input type="text" class="form-control" id="fn" placeholder="firstname" name="firstname"
+                                [ngModel]=updatedata.firstname>
+                        </div>
+                        <div class="col">
+                            <label for="ln">Lastname :</label>
+                            <input type="text" class="form-control" id="ln" placeholder="Lastname" name="Lastname"
+                                [ngModel]=updatedata.Lastname>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-2">
+                        <div class="col">
+                            <label for="">Email :</label>
+                            <input type="email" class="form-control" placeholder="Enter Email" name="email"
+                                [ngModel]=updatedata.email>
+                        </div>
+                        <div class="col">
+                            <label for="">Phone number :</label>
+                            <input type="number" class="form-control" placeholder="Phone no" name="phone"
+                                [ngModel]=updatedata.phone>
+                        </div>
+                    </div>
+
+                    <div class="form-row ml-1 mt-2">
+                        <label for="">Gender : &nbsp;</label>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="ma" name="Gender" value="Male"
+                                [ngModel]=updatedata.Gender>
+                            <label class="custom-control-label" for="ma">Male</label>
+                        </div>
+                        <div class="custom-control custom-radio ml-1">
+                            <input type="radio" class="custom-control-input" id="fml" name="Gender" value="Female"
+                                [ngModel]=updatedata.Gender>
+                            <label class="custom-control-label" for="fml">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-2">
+                        <div class="col">
+                            <label for="">Date of Birth :</label>
+                            <input type="date" class="form-control" placeholder="Date of Birth" name="DOB"
+                                [ngModel]=updatedata.DOB>
+                        </div>
+
+                        <div class="col">
+                            <label for="q">Qualification :</label>
+                            <select name="Qualification" id="q" class="form-control" [ngModel]=updatedata.Qualification>
+                                <!-- <option value="">Select Qualification</option> -->
+                                <option value="B.Com">B.Com</option>
+                                <option value="B.Tech">B.Tech</option>
+                                <option value="M.Tech">M.Tech</option>
+                                <option value="B.Sc">B.Sc</option>
+                                <option value="M.Com">M.Com </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="margin-left: 6px; margin-top: 20px;">
+                        <label for="">Select Course : &nbsp; </label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="an" name="angular"
+                                [ngModel]=updatedata.angular>&nbsp;
+                            <label class="custom-control-label" for="an">Angular</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="no" name="nodejs"
+                                [ngModel]=updatedata.nodejs>&nbsp;
+                            <label class="custom-control-label" for="no">Node JS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="ph" name="python"
+                                [ngModel]=updatedata.python>&nbsp;
+                            <label class="custom-control-label" for="ph">Python</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row ml-1 mt-2">
+                        <label for="ad">Address : </label>
+                        <textarea name="address" id="ad" cols="50" rows="2" class="form-control"
+                            [ngModel]=updatedata.address></textarea>
+                    </div>
+
+                    <div class="text-right text-black-50 mt-2">
+                        <button class="btn btn-warning btn-sm btn-block rounded-pill" type="submit"
+                            (click)="editData(ref2.value);ref2.reset()" data-dismiss="modal">Submit</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- Modal footer -->
+            <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div> -->
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- add model -->
+
+<div>
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal3">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-black-50 text-monospace">Registraion Form</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form #ref3='ngForm' (ngSubmit)='sendData(ref3.value);ref3.reset()'>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="bth">Batch :</label>
+                                <input type="number" class="form-control" id="bth" placeholder="" name="batch" ngModel>
+                            </div>
+                            <div class="col">
+                                <label for="role">Role :</label>
+                                <input type="text" class="form-control" id="role" placeholder="" name="role" ngModel>
+                            </div>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col">
+                                <label for="fna">Firstname :</label>
+                                <input type="text" class="form-control" id="fna" placeholder="firstname"
+                                    name="firstname" ngModel>
+                            </div>
+                            <div class="col">
+                                <label for="lna">Lastname :</label>
+                                <input type="text" class="form-control" id="lna" placeholder="Lastname" name="Lastname"
+                                    ngModel>
+                            </div>
+                        </div>
+
+                        <div class="form-row mt-2">
+                            <div class="col">
+                                <label for="">Email :</label>
+                                <input type="email" class="form-control" placeholder="Enter Email" name="email" ngModel>
+                            </div>
+                            <div class="col">
+                                <label for="">password :</label>
+                                <input type="password" class="form-control" placeholder="password" name="pwd" ngModel>
+                            </div>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col">
+                                <label for="">Phone number :</label>
+                                <input type="text" class="form-control" placeholder="Phone no" name="phone" ngModel>
+                            </div>
+                        </div>
+
+                        <div class="form-row ml-2 mt-2">
+                            <label for="">Gender : &nbsp;</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="ml" name="Gender" value="Male"
+                                    ngModel>
+                                <label class="custom-control-label" for="ml">Male</label>
+                            </div>
+                            <div class="custom-control custom-radio ml-1">
+                                <input type="radio" class="custom-control-input" id="fm" name="Gender" value="Female"
+                                    ngModel>
+                                <label class="custom-control-label" for="fm">Female</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row mt-2">
+                            <div class="col">
+                                <label for="">Date of Birth :</label>
+                                <input type="date" class="form-control" placeholder="Date of Birth" name="DOB" ngModel>
+                            </div>
+
+                            <div class="col">
+                                <label for="qln">Qualification :</label>
+                                <select name="Qualification" id="qln" class="form-control" ngModel>
+                                    <!-- <option value="">Select Qualification</option> -->
+                                    <option value="B.Com">B.Com</option>
+                                    <option value="B.Tech">B.Tech</option>
+                                    <option value="M.Tech">M.Tech</option>
+                                    <option value="B.Sc">B.Sc</option>
+                                    <option value="M.Com">M.Com </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="margin-left: 6px; margin-top: 25px;">
+                            <label for="">Select Course : &nbsp; </label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="ang" name="angular"
+                                    ngModel>&nbsp;
+                                <label class="custom-control-label" for="ang">Angular</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="nod" name="nodejs"
+                                    ngModel>&nbsp;
+                                <label class="custom-control-label" for="nod">Node JS</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="phy" name="python"
+                                    ngModel>&nbsp;
+                                <label class="custom-control-label" for="phy">Python</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row mt-2 ml-1">
+                            <label for="ads">Address : </label>
+                            <textarea name="address" id="ads" cols="50" rows="2" class="form-control"
+                                ngModel></textarea>
+                        </div>
+
+                        <div class="text-right text-black-50 mt-2">
+                            <button class="btn btn-warning btn-sm btn-block rounded-pill" type="submit"
+                                (click)='sendData(ref3.value);ref3.reset()' data-dismiss="modal">Register</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Modal footer
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div> -->
+
+            </div>
+        </div>
+    </div>
+</div>
